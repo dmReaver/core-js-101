@@ -19,8 +19,8 @@
  *    'Tue, 26 Jan 2016 13:48:02 GMT' => Date()
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
-function parseDataFromRfc2822(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromRfc2822(value) {
+  return new Date(value);
 }
 
 /**
@@ -34,8 +34,8 @@ function parseDataFromRfc2822(/* value */) {
  *    '2016-01-19T16:07:37+00:00'    => Date()
  *    '2016-01-19T08:07:37Z' => Date()
  */
-function parseDataFromIso8601(/* value */) {
-  throw new Error('Not implemented');
+function parseDataFromIso8601(value) {
+  return new Date(value);
 }
 
 
@@ -53,8 +53,19 @@ function parseDataFromIso8601(/* value */) {
  *    Date(2012,1,1)    => true
  *    Date(2015,1,1)    => false
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(dt) {
+  const year = dt.getFullYear();
+  let leap = false;
+  if (year % 4 !== 0) {
+    leap = false;
+  } else if (year % 100 !== 0) {
+    leap = true;
+  } else if (year % 400 !== 0) {
+    leap = false;
+  } else {
+    leap = true;
+  }
+  return leap;
 }
 
 
@@ -73,8 +84,15 @@ function isLeapYear(/* date */) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,0,250)     => "00:00:00.250"
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
-function timeSpanToString(/* startDate, endDate */) {
-  throw new Error('Not implemented');
+function timeSpanToString(startDate, endDate) {
+  const dd = endDate.getTime() - startDate.getTime();
+  const d1 = new Date();
+  d1.setTime(dd);
+  const h = String(d1.getUTCHours()).length === 2 ? d1.getUTCHours() : ''.concat('0', d1.getUTCHours());
+  const m = String(d1.getMinutes()).length === 2 ? d1.getMinutes() : ''.concat('0', d1.getMinutes());
+  const s = String(d1.getSeconds()).length === 2 ? d1.getSeconds() : ''.concat('0', d1.getSeconds());
+  const ms = String(d1.getMilliseconds()).length === 2 ? d1.getMilliseconds() : ''.concat(d1.getMilliseconds(), '0000').slice(0, 3);
+  return ''.concat(h, ':', m, ':', s, '.', ms);
 }
 
 
