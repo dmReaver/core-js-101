@@ -108,7 +108,7 @@ function getFastestPromise(array) {
 function chainPromises(array, action) {
   return processAllPromises(array)
     .then((p) => p.reduce(action))
-    .catch((p) => console.log(p));
+    .catch((p) => p);
 }
 
 module.exports = {

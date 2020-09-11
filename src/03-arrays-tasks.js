@@ -133,7 +133,7 @@ function getUpperCaseStrings(arr) {
  * @return {array}
  *
  * @example
- *    [ '', 'a', 'bc', 'def', 'ghij' ]  => [ 0, 1, 2, 3, 4 ]
+ *    [ '', 'a', 'bc', 'def', 'item' ]  => [ 0, 1, 2, 3, 4 ]
  *    [ 'angular', 'react', 'ember' ] => [ 7, 5, 5 ]
  */
 function getStringsLength(arr) {
@@ -591,8 +591,8 @@ function swapHeadAndTail(arr) {
   if (arr.length % 2 === 0) {
     return [].concat(arr.slice(arr.length / 2), arr.slice(0, (arr.length / 2)));
   }
-  // eslint-disable-next-line max-len
-  return [].concat(arr.slice(Math.round(arr.length / 2)), arr[Math.round(arr.length / 2) - 1], arr.slice(0, Math.round((arr.length / 2)) - 1));
+  return [].concat(arr.slice(Math.round(arr.length / 2)),
+    arr[Math.round(arr.length / 2) - 1], arr.slice(0, Math.round((arr.length / 2)) - 1));
 }
 
 
